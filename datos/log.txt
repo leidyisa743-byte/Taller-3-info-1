@@ -1,0 +1,17 @@
+2025-12-03 20:01:41,980 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:02:00,981 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:03:31,294 - INFO - Generados 45 registros aleatorios.
+2025-12-03 20:04:29,802 - INFO - Validación realizada. Válidos: 45. Ordenados por FC.
+2025-12-03 20:05:26,796 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:05:26,810 - INFO - Archivo TXT guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\txt\registros.txt
+2025-12-03 20:05:26,814 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:05:26,824 - INFO - Archivo CSV guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\csv\registros.csv
+2025-12-03 20:05:26,826 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:05:26,829 - INFO - Archivo JSON guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\json\registros.json
+2025-12-03 20:07:40,913 - INFO - Archivo JSON importado: datos\json\registros.json
+2025-12-03 20:07:40,913 - INFO - Importados 45 registros desde datos\json\registros.json
+2025-12-03 20:08:03,752 - INFO - Conexión a MongoDB exitosa.
+2025-12-03 20:08:03,969 - INFO - Insertados 45 documentos en MongoDB.
+2025-12-03 20:08:04,071 - INFO - Inserción a Mongo completada desde CLI.
+2025-12-03 20:10:46,680 - INFO - Conexión a MongoDB exitosa.
+2025-12-03 20:10:46,795 - INFO - Consultas ejecutadas y exportadas a resultados_mongo.json
