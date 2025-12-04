@@ -37,3 +37,23 @@
 2025-12-03 20:30:06,003 - INFO - Archivo JSON importado: datos\json\registros.json
 2025-12-03 20:30:06,003 - INFO - Importados 45 registros desde datos\json\registros.json
 2025-12-03 20:30:38,713 - INFO - Error conectando a MongoDB: The resolution lifetime expired after 21.157 seconds: Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.
+2025-12-03 20:32:13,722 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:32:30,252 - INFO - Archivo JSON importado: datos\json\registros3.json
+2025-12-03 20:32:30,253 - INFO - Importados 50 registros desde datos\json\registros3.json
+2025-12-03 20:32:36,615 - INFO - Conexión a MongoDB exitosa.
+2025-12-03 20:32:36,850 - INFO - Insertados 50 documentos en MongoDB.
+2025-12-03 20:32:36,948 - INFO - Inserción a Mongo completada desde CLI.
+2025-12-03 20:33:27,264 - INFO - Generados 10 registros aleatorios.
+2025-12-03 20:33:32,518 - INFO - Validación realizada. Válidos: 10. Ordenados por FC.
+2025-12-03 20:33:38,886 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:33:38,890 - INFO - Archivo TXT guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\txt\registros4.txt
+2025-12-03 20:33:38,891 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:33:38,896 - INFO - Archivo CSV guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\csv\registros4.csv
+2025-12-03 20:33:38,897 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:33:38,900 - INFO - Archivo JSON guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\json\registros4.json
+2025-12-03 20:33:51,683 - INFO - Archivo JSON importado: datos\json\registros4.json
+2025-12-03 20:33:51,684 - INFO - Importados 10 registros desde datos\json\registros4.json
+2025-12-03 20:34:11,658 - INFO - Error conectando a MongoDB: No replica set members found yet, Timeout: 5.0s, Topology Description: <TopologyDescription id: 6930e5056ff4a56a21d3eac9, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('ac-pqafpwv-shard-00-00.ykqyrie.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-pqafpwv-shard-00-01.ykqyrie.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('ac-pqafpwv-shard-00-02.ykqyrie.mongodb.net', 27017) server_type: Unknown, rtt: None>]>
+2025-12-03 20:34:43,028 - INFO - Conexión a MongoDB exitosa.
+2025-12-03 20:34:43,260 - INFO - Insertados 10 documentos en MongoDB.
+2025-12-03 20:34:43,370 - INFO - Inserción a Mongo completada desde CLI.
