@@ -2,8 +2,8 @@ import re
 
 def validar_patrones(registro):
     """
-    Item 4: Validación con expresiones regulares.
-    Verifica que cada campo cumpla el formato estricto.
+    Valida un único registro contra los patrones definidos.
+    Devuelve (es_valido: bool, errores: list[str])
     """
     patrones = {
         # ID-001 (ID- seguido de 3 dígitos)
@@ -21,5 +21,21 @@ def validar_patrones(registro):
         valor = registro.get(campo, "")
         if not re.match(patron, valor):
             errores.append(campo)
-    
-    return len(errores) == 0
+
+    return (len(errores) == 0, errores)
+
+def validar_registros(lista_registros):
+    """
+    Valida una lista de registros y devuelve:
+    - validos: lista de registros válidos
+    - invalidos: lista de tuples (registro, errores)
+    """
+    validos = []
+    invalidos = []
+    for reg in lista_registros:
+        ok, errores = validar_patrones(reg)
+        if ok:
+            validos.append(reg)
+        else:
+            invalidos.append((reg, errores))
+    return validos, invalidos

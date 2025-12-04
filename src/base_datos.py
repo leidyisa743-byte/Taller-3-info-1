@@ -1,97 +1,102 @@
-from pymongo import MongoClient
+import json
 from src.configuracion import MONGO_URI, DB_NAME, COLLECTION_NAME, RUTA_JSON
 from src.gestor_archivos import registrar_log
-import json
+from pymongo import MongoClient
+from pathlib import Path
 
 def obtener_conexion():
     """
-    Conecta Python con MongoDB Atlas.
+    Intenta conectar a MongoDB si MONGO_URI está configurado.
+    Retorna MongoClient o None.
     """
+    if not MONGO_URI:
+        registrar_log("MONGO_URI no configurado. Omitiendo conexión a MongoDB.")
+        return None
     try:
-        client = MongoClient(MONGO_URI)
-        client.admin.command('ping') # Verificar conexión
+        client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+        client.admin.command('ping')
+        registrar_log("Conexión a MongoDB exitosa.")
         return client
     except Exception as e:
         registrar_log(f"Error conectando a MongoDB: {e}")
         return None
 
 def insertar_datos_mongo(registros):
-    """
-    Item 5: Insertar registros (Equivalente a db.collection.insertMany).
-    """
     client = obtener_conexion()
     if not client:
-        return
-
-    db = client[DB_NAME]
-    collection = db[COLLECTION_NAME]
-    
-    # Limpiamos colección anterior para no duplicar en pruebas
-    collection.delete_many({}) 
-    
+        print("No hay conexión a MongoDB (MONGO_URI vacío o error).")
+        return False
     try:
-        # insertMany
+        db = client[DB_NAME]
+        collection = db[COLLECTION_NAME]
+        # Para simplicidad en pruebas: limpiamos colección
+        collection.delete_many({})
+        # Insertar
+        # Convertir si los documentos tienen tipos no serializables (no es el caso aquí)
         collection.insert_many(registros)
         registrar_log(f"Insertados {len(registros)} documentos en MongoDB.")
-        print("Datos cargados exitosamente en Atlas.")
+        print(f"Insertados {len(registros)} documentos en MongoDB.")
+        return True
     except Exception as e:
-        print(f"Error insertando: {e}")
+        registrar_log(f"Error insertando en MongoDB: {e}")
+        print(f"Error insertando en MongoDB: {e}")
+        return False
     finally:
         client.close()
 
-def ejecutar_consultas():
+def ejecutar_consultas_y_exportar():
     """
-    Item 5: Realizar consultas (find, sort, aggregate).
+    Realiza:
+    - Promedio de FC
+    - Documentos con SpO2 < 94
+    - Exporta resultados a resultados_mongo.json dentro de datos/json
     """
     client = obtener_conexion()
     if not client:
-        return
+        print("No hay conexión a MongoDB (MONGO_URI vacío o error).")
+        return None
+    try:
+        db = client[DB_NAME]
+        collection = db[COLLECTION_NAME]
+        todos = list(collection.find())
+        if not todos:
+            print("Colección vacía.")
+            return None
 
-    db = client[DB_NAME]
-    collection = db[COLLECTION_NAME]
+        # Promedio FC
+        suma = 0
+        cnt = 0
+        riesgos = []
+        for doc in todos:
+            fc_val = int(str(doc.get('fc', '0')).replace('ppm', ''))
+            suma += fc_val
+            cnt += 1
+            spo2_val = int(str(doc.get('spo2', '0')).replace('%', ''))
+            if spo2_val < 94:
+                # convertir _id a str para exportar
+                doc_copy = doc.copy()
+                doc_copy['_id'] = str(doc_copy.get('_id'))
+                riesgos.append(doc_copy)
+        promedio = (suma / cnt) if cnt else 0
 
-    print("\n--- Resultados Consultas MongoDB ---")
+        resultados = {
+            "promedio_fc": promedio,
+            "pacientes_riesgo": riesgos
+        }
 
-    # A. Promedio FC (requiere procesar el string '090ppm' o haber guardado numérico)
-    # Para este ejercicio, traemos todo y calculamos en Python o usamos agregación avanzada.
-    # Usaremos Python para simplicidad del taller:
-    todos = list(collection.find())
-    suma_fc = 0
-    count = 0
-    for doc in todos:
-        # Extraer numérico de "090ppm"
-        fc_val = int(doc['fc'].replace('ppm', ''))
-        suma_fc += fc_val
-        count += 1
-    
-    promedio = suma_fc / count if count > 0 else 0
-    print(f"1. Promedio Frecuencia Cardiaca: {promedio:.2f}")
+        ruta_export = RUTA_JSON / "resultados_mongo.json"
+        ruta_export.parent.mkdir(parents=True, exist_ok=True)
+        with open(ruta_export, 'w', encoding='utf-8') as f:
+            json.dump(resultados, f, indent=4, ensure_ascii=False)
 
-    # B. Documentos con SpO2 menor a 94 (Equivalente a db.collection.find({filter}))
-    # Como guardamos "95%", necesitamos filtrar con cuidado.
-    # Opción A: Regex en Mongo. Opción B: Filtrar en Python.
-    # Usamos filtrado Python sobre los datos recuperados para simular el criterio lógico
-    docs_hipoxia = []
-    for doc in todos:
-        spo2_val = int(doc['spo2'].replace('%', ''))
-        if spo2_val < 94:
-            # Eliminamos _id para poder exportar a JSON limpio
-            doc['_id'] = str(doc['_id']) 
-            docs_hipoxia.append(doc)
-
-    print(f"2. Pacientes con SpO2 < 94%: {len(docs_hipoxia)}")
-
-    # C. Exportar consultas a resultados_mongo.json (Equivalente a mongoexport)
-    ruta_export = RUTA_JSON / "resultados_mongo.json"
-    resultados = {
-        "promedio_fc": promedio,
-        "pacientes_riesgo": docs_hipoxia
-    }
-    
-    with open(ruta_export, 'w', encoding='utf-8') as f:
-        json.dump(resultados, f, indent=4)
-    
-    registrar_log("Consulta realizada y exportada a resultados_mongo.json")
-    print(f"Resultados exportados a: {ruta_export}")
-    
-    client.close()
+        registrar_log("Consultas ejecutadas y exportadas a resultados_mongo.json")
+        print(f"Promedio FC: {promedio:.2f}")
+        print(f"Pacientes con SpO2 < 94%: {len(riesgos)}")
+        print(f"Resultados exportados a {ruta_export}")
+        return resultados
+    except Exception as e:
+        registrar_log(f"Error ejecutando consultas en MongoDB: {e}")
+        print(f"Error ejecutando consultas: {e}")
+        return None
+    finally:
+        client.close()
