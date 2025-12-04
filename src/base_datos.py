@@ -29,8 +29,7 @@ def insertar_datos_mongo(registros):
     try:
         db = client[DB_NAME]
         collection = db[COLLECTION_NAME]
-        # Para simplicidad en pruebas: limpiamos colección
-        collection.delete_many({})
+    
         # Insertar
         # Convertir si los documentos tienen tipos no serializables (no es el caso aquí)
         collection.insert_many(registros)
