@@ -13,7 +13,7 @@ def generar_datos_aleatorios(cantidad):
         id_str = f"ID-{i:03d}"
         edad = random.randint(18, 90)
         fr_str = f"{edad} Años"
-        fc = random.randint(50, 120)  # rango razonable de FC
+        fc = random.randint(50, 120) 
         fc_str = f"{fc:03d}ppm"
         spo2 = random.randint(85, 100)
         spo2_str = f"{spo2}%"
