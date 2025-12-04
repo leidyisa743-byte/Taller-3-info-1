@@ -15,3 +15,25 @@
 2025-12-03 20:08:04,071 - INFO - Inserción a Mongo completada desde CLI.
 2025-12-03 20:10:46,680 - INFO - Conexión a MongoDB exitosa.
 2025-12-03 20:10:46,795 - INFO - Consultas ejecutadas y exportadas a resultados_mongo.json
+2025-12-03 20:25:55,568 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:26:24,536 - INFO - Generados 50 registros aleatorios.
+2025-12-03 20:26:26,942 - INFO - Validación realizada. Válidos: 50. Ordenados por FC.
+2025-12-03 20:26:39,275 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:26:39,277 - INFO - Archivo TXT guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\txt\registros2.txt
+2025-12-03 20:26:39,279 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:26:39,281 - INFO - Archivo CSV guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\csv\registros2.csv
+2025-12-03 20:26:39,282 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:26:39,286 - INFO - Archivo JSON guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\json\registros2.json
+2025-12-03 20:26:56,513 - INFO - Error importando JSON datos\csv\registros2.csv: Expecting value: line 1 column 1 (char 0)
+2025-12-03 20:29:20,785 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:29:24,745 - INFO - Generados 50 registros aleatorios.
+2025-12-03 20:29:27,209 - INFO - Validación realizada. Válidos: 50. Ordenados por FC.
+2025-12-03 20:29:44,045 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:29:44,050 - INFO - Archivo TXT guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\txt\registros3.txt
+2025-12-03 20:29:44,052 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:29:44,054 - INFO - Archivo CSV guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\csv\registros3.csv
+2025-12-03 20:29:44,056 - INFO - Estructura de carpetas creada/verificada.
+2025-12-03 20:29:44,060 - INFO - Archivo JSON guardado: C:\Users\vidal\Main Files System\University\Semester 4\Informática II\Trabajos\Taller 3 info1 ISA\Taller-3-info-1\datos\json\registros3.json
+2025-12-03 20:30:06,003 - INFO - Archivo JSON importado: datos\json\registros.json
+2025-12-03 20:30:06,003 - INFO - Importados 45 registros desde datos\json\registros.json
+2025-12-03 20:30:38,713 - INFO - Error conectando a MongoDB: The resolution lifetime expired after 21.157 seconds: Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.; Server Do53:192.168.1.1@53 answered The DNS operation timed out.
